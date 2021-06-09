@@ -105,59 +105,6 @@ jobs:
         run: |
           ./.ci/test/static/run
 
-  build_php:
-    container:
-      image: quay.io/pantheon-public/build-tools-ci:6.x
-      options: --user root
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cache composer cache
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-composer-cache
-        with:
-          path: ~/.composer/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
-      - name: Cache vendor folder
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-vendor
-        with:
-          path: ./vendor
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/composer.lock') }}
-
-      - name: Cache web folder
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-web
-        with:
-          path: ./web
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
-
-      - name: Cache drush folder
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-drush
-        with:
-          path: ./drush
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
-
-      # Set TERMINUS_ENV and related environment variables.
-      # https://github.com/pantheon-systems/docker-build-tools-ci/blob/6.x/scripts/set-environment
-      - name: setup-environment-vars
-        run: /build-tools-ci/scripts/set-environment
-
-      - name: run PHP build step
-        run: ./.ci/build/php
-
   deploy_to_pantheon:
     container:
       image: quay.io/pantheon-public/build-tools-ci:6.x
