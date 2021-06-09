@@ -54,6 +54,8 @@ web/sites/*/services*.yml
 # ------------------------------------------------------------------
 /web/modules/custom/*
 !/web/modules/custom/.gitkeep
+
+# Testing comment.
 #!/web/modules/custom/module_in_repo
 
 
