@@ -255,7 +255,6 @@ jobs:
           ssh-add ../private.key
           source $BASH_ENV
           ./.ci/test/behat/initialize
-          composer install
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
