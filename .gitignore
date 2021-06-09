@@ -55,7 +55,6 @@ web/sites/*/services*.yml
 /web/modules/custom/*
 !/web/modules/custom/.gitkeep
 
-# Testing comment.
 #!/web/modules/custom/module_in_repo
 
 
@@ -124,6 +123,9 @@ upstream/web/
 /web/sites/example.sites.php
 /web/themes/README.txt
 /.drush-lock-update
+
+# CI Generated Stuff
+bash_env.txt
 
 # Other common rules
 # ------------------
