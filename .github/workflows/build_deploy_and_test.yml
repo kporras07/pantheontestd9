@@ -256,9 +256,6 @@ jobs:
           source $BASH_ENV
           ./.ci/test/behat/initialize
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-
       - name: run acceptance tests with Behat
         run: |
           eval `ssh-agent -s`
